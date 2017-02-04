@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 @SuppressWarnings("serial")
@@ -58,25 +59,42 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected JMenuBar createMenuBarFile() {
 		JMenuBar menuBar = new JMenuBar();
-
-		JMenu menu = new JMenu("File");
-		menu.setMnemonic(KeyEvent.VK_D);
+		JMenuItem menuItem;
+		JMenu menu;
+		
+		menu = new JMenu("Arquivo");
+		menu.setMnemonic(KeyEvent.VK_A);
 		menuBar.add(menu);
 
 		// Set up the first menu item.
-		JMenuItem menuItem;
-		menuItem = new JMenuItem("About...");
-		menuItem.setMnemonic(KeyEvent.VK_H);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
-		menuItem.setActionCommand("ABOUT");
+		menuItem = new JMenuItem("Login...");
+		menuItem.setMnemonic(KeyEvent.VK_L);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,
+				ActionEvent.CTRL_MASK));
+		menuItem.setActionCommand("LOGIN");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Exit...");
+		menuItem = new JMenuItem("Sair...");
 		menuItem.setMnemonic(KeyEvent.VK_Q);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
 				ActionEvent.CTRL_MASK));
 		menuItem.setActionCommand("EXIT");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
+		
+		//------------ Ajuda
+		
+		menu = new JMenu("Ajuda");
+		menu.setMnemonic(KeyEvent.VK_H);
+		menuBar.add(menu);
+		
+		
+		menuItem = new JMenuItem("Sobre...");
+		menuItem.setMnemonic(KeyEvent.VK_H);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+		menuItem.setActionCommand("ABOUT");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
@@ -89,7 +107,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		case "ABOUT":
 			createFrameAbout();
 			break;
-
+		case "LOGIN":
+			showMessage("Em Desenvolvimento...");
+			break;
 		case "EXIT":
 			quit();
 			break;
@@ -99,12 +119,22 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	protected void createFrameAbout() {
-		// About frame = About.getInstance();
-		// frame.setVisible(true);
+		 About frame = About.getInstance();
+		 if(!containsOnArray(desktop.getComponents(), frame)){
+			 desktop.add(frame);
+			 frame.setVisible(true);
+		 }
 	}
 
 	protected void quit() {
 		System.exit(0);
+	}
+	
+	private boolean containsOnArray(Object[] aoArray, Object aoElement ){
+		for(int i = 0;i < aoArray.length;i++)
+			if(aoArray[i]==aoElement)
+				return true;
+		return false;
 	}
 
 	public static void main(String[] args) {
@@ -121,6 +151,10 @@ public class MainFrame extends JFrame implements ActionListener {
 		MainFrame frame = MainFrame.getInstance();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	public void showMessage(String message){
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 	public void log(String message) {
