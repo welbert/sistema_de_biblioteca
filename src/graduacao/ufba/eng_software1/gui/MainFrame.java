@@ -14,6 +14,7 @@ import java.util.Date;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -105,10 +106,10 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "ABOUT":
-			createFrameAbout();
+			createFrame(e.getActionCommand());
 			break;
 		case "LOGIN":
-			showMessage("Em Desenvolvimento...");
+			createFrame(e.getActionCommand());
 			break;
 		case "EXIT":
 			quit();
@@ -118,9 +119,26 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 	}
 
-	protected void createFrameAbout() {
-		 About frame = About.getInstance();
+	protected void createFrame(String asFrame) {
+		JInternalFrame frame = null;
+		switch (asFrame) {
+		case "ABOUT":
+			frame = About.getInstance();
+			break;
+		case "LOGIN":
+			frame = Login.getInstance();
+			((Login)frame).setPMainFrame(this);
+			break;
+		default:
+			log("Falha ao chamar a função 'CreateFrame' com o valor "+asFrame);
+			return;
+		}
+		
 		 if(!containsOnArray(desktop.getComponents(), frame)){
+			 Dimension desktopSize = desktop.getSize();
+			 Dimension jInternalFrameSize = frame.getSize();
+			 frame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			     (desktopSize.height- jInternalFrameSize.height)/2);
 			 desktop.add(frame);
 			 frame.setVisible(true);
 		 }
@@ -158,7 +176,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	public void log(String message) {
-		if (Config.log)
+		if (Config.LOG)
 			try {
 				DateFormat dateFormat = new SimpleDateFormat(
 						"yyyy/MM/dd HH:mm:ss");

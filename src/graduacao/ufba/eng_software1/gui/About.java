@@ -1,7 +1,5 @@
 package graduacao.ufba.eng_software1.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -9,9 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import graduacao.ufba.eng_software1.utils.Config;
-import javax.swing.JFrame;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 
+@SuppressWarnings("serial")
 public class About extends JInternalFrame {
 	private static About instance;
 
@@ -26,17 +26,18 @@ public class About extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public About() {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setClosable(true);
 		setTitle("Sobre");
-		setBounds(100, 100, (int) Math.round(230+Config.url_repository.length()*1.8), 186);
+		setBounds(100, 100, (int) Math.round(230+Config.URL_REPOSITORY.length()*1.8), 186);
 		
 		JLabel lblSistemaDeBiblioteca = new JLabel("Sistema de Biblioteca");
 		
-		JLabel lblVerso = new JLabel("Vers\u00E3o "+Config.version);
+		JLabel lblVerso = new JLabel("Vers\u00E3o "+Config.VERSION);
 		
 		JLabel lblDesenvolvidoPorMayara = new JLabel("Desenvolvido por Mayara e Welbert");
 		
-		JLabel lblRepositorio = new JLabel(Config.url_repository);
+		JLabel lblRepositorio = new JLabel(Config.URL_REPOSITORY);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
