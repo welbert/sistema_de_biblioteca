@@ -12,5 +12,5 @@ public class Config {
 	public static final String BDPASSWORD = "usbw";
 	public static final String BDURL = "localhost";
 	public static final String BDPORT = "3307";
-	public static final String BDDATABASE = "test";
+	public static final String BDDATABASE = "mydb";
 }
