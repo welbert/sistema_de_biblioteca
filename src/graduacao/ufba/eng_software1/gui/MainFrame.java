@@ -1,5 +1,6 @@
 package graduacao.ufba.eng_software1.gui;
 
+import graduacao.ufba.eng_software1.bd.BancoDados;
 import graduacao.ufba.eng_software1.utils.Arquivo;
 import graduacao.ufba.eng_software1.utils.Config;
 
@@ -173,6 +174,11 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	public void showMessage(String message){
 		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	public boolean executeQuery(String sql){
+		BancoDados.getInstance();
+		return true;
 	}
 
 	public void log(String message) {

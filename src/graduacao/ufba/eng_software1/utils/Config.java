@@ -8,8 +8,9 @@ public class Config {
 	
 	
 	//----- BANCO DE DADOS
-	public static final String BDUSER = "";
-	public static final String BDPASSWORD = "";
-	public static final String BDPORT = "";
-	public static final String BDDATABASE = "";
+	public static final String BDUSER = "root";
+	public static final String BDPASSWORD = "usbw";
+	public static final String BDURL = "localhost";
+	public static final String BDPORT = "3307";
+	public static final String BDDATABASE = "test";
 }
