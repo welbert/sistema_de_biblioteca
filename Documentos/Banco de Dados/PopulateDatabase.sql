@@ -5,7 +5,23 @@ INSERT INTO `mydb`.`tus_tipo_usuario` (
 `tus_ds_usuario`
 )
 VALUES (
-'1', 'Aluno'
+'1', 'Professor'
+);
+
+INSERT INTO `mydb`.`tus_tipo_usuario` (
+`tus_tp_usario` ,
+`tus_ds_usuario`
+)
+VALUES (
+'2', 'Aluno Graduação'
+);
+
+INSERT INTO `mydb`.`tus_tipo_usuario` (
+`tus_tp_usario` ,
+`tus_ds_usuario`
+)
+VALUES (
+'2', 'Aluno Pós-Graduação'
 );
 
 INSERT INTO `mydb`.`usr_usuario` (

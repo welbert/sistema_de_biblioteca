@@ -1,6 +1,11 @@
 package graduacao.ufba.eng_software1.gui;
 
 import graduacao.ufba.eng_software1.bd.BancoDados;
+import graduacao.ufba.eng_software1.usuario.Aluno;
+import graduacao.ufba.eng_software1.usuario.AlunoGraduacao;
+import graduacao.ufba.eng_software1.usuario.AlunoPosGraduacao;
+import graduacao.ufba.eng_software1.usuario.Professor;
+import graduacao.ufba.eng_software1.usuario.Usuario;
 import graduacao.ufba.eng_software1.utils.Arquivo;
 import graduacao.ufba.eng_software1.utils.Config;
 
@@ -28,6 +33,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	JDesktopPane desktop;
 	private static MainFrame instance;
 	private Arquivo log;
+	private Usuario usuarioLogado = null;
 
 	public static MainFrame getInstance() {
 		if (instance == null)
@@ -161,6 +167,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI();
+				
+				if(BancoDados.getInstance().hasDberror())
+					MainFrame.getInstance().showMessage("Não foi possível conectar ao banco de dados. Contate o administrador.");
+				else
+					MainFrame.getInstance().createFrame("LOGIN");
 			}
 		});
 	}
@@ -176,9 +187,28 @@ public class MainFrame extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
-	public boolean executeQuery(String sql){
-		BancoDados.getInstance();
-		return true;
+	public BancoDados getBD(){
+		return BancoDados.getInstance();
+	}
+	
+	public void setUsuarioLogado(int id,String nome,int tpUser){
+		switch (tpUser) {
+		case 1:
+			usuarioLogado = new Professor((long) id, nome); 
+			break;
+		case 2:
+			usuarioLogado = new AlunoGraduacao((long)id, nome);
+			break;
+		case 3:
+			usuarioLogado = new AlunoPosGraduacao((long)id, nome);
+			break;
+		default:
+			showMessage("Tipo de usuario desconhecido. Aplicação será encerrada.");
+			log("Tipo de usuario desconhecido. Tipo: "+tpUser);
+			System.exit(-1);			
+			break;
+		}
+			
 	}
 
 	public void log(String message) {

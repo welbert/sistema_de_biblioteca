@@ -2,6 +2,9 @@ package graduacao.ufba.eng_software1.gui;
 
 import javax.swing.JInternalFrame;
 import javax.swing.border.LineBorder;
+
+import graduacao.ufba.eng_software1.bd.BancoDados;
+
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -11,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -49,7 +54,23 @@ public class Login extends JInternalFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PMainFrame.showMessage("Em Desenvolvimento...");
+				BancoDados BD = PMainFrame.getBD();
+				ResultSet rs = 
+						BD.selectInformation("usr_id_usuario,usr_nm_nome,usr_tp_usario", "usr_usuario", "usr_nm_login = '"+txfLogin.getText()
+							+"' AND usr_ds_senha = '"+txfPassword.getText()+"'");
+				try {
+					if(rs.next()){
+						PMainFrame.showMessage("Bem vindo(a), "+rs.getString("usr_nm_nome"));
+						PMainFrame.setUsuarioLogado(rs.getInt("usr_id_usuario"),
+								rs.getString("usr_nm_nome"),
+								rs.getInt("usr_tp_usario"));
+					}else{
+						PMainFrame.showMessage("Usuario/Senha invalido.");
+					}
+				} catch (SQLException e) {
+					PMainFrame.showMessage("Falha ao logar");
+					PMainFrame.log("Falha ao logar."+e.getMessage());
+				}
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
