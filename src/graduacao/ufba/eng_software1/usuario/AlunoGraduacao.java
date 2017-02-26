@@ -10,7 +10,7 @@ public class AlunoGraduacao extends Aluno{
 	
 	public AlunoGraduacao(Long id, String nome){
 		
-		super(id, nome);
+		super(id, nome,3);
 	}
 
 

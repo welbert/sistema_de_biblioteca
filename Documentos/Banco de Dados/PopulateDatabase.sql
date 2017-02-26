@@ -6,7 +6,7 @@ INSERT INTO `mydb`.`tus_tipo_usuario` (
 `tus_nu_nivel_usuario`
 )
 VALUES (
-'1', 'Professor','3'
+'1', 'Admin','3'
 );
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
@@ -36,6 +36,7 @@ VALUES (
 '4', 'Aluno Pós-Graduação', '1'
 );
 
+--Senha = admin
 INSERT INTO `mydb`.`usr_usuario` (
 `usr_id_usuario` ,
 `usr_nm_login` ,
@@ -49,5 +50,5 @@ INSERT INTO `mydb`.`usr_usuario` (
 `usr_ch_inativo`
 )
 VALUES (
-'1', 'admin', 'admin', '1', 'Admin', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
+'1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 'Admin', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
 );

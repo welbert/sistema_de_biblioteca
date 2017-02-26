@@ -10,7 +10,7 @@ public class AlunoPosGraduacao extends Aluno{
 	
 	public AlunoPosGraduacao(Long id, String nome){
 		
-		super(id, nome);
+		super(id, nome,4);
 	}
 
 	@Override

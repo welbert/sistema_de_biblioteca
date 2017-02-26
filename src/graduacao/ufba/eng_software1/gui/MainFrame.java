@@ -1,6 +1,7 @@
 package graduacao.ufba.eng_software1.gui;
 
 import graduacao.ufba.eng_software1.bd.BancoDados;
+import graduacao.ufba.eng_software1.usuario.Admin;
 import graduacao.ufba.eng_software1.usuario.Aluno;
 import graduacao.ufba.eng_software1.usuario.AlunoGraduacao;
 import graduacao.ufba.eng_software1.usuario.AlunoPosGraduacao;
@@ -191,16 +192,19 @@ public class MainFrame extends JFrame implements ActionListener {
 		return BancoDados.getInstance();
 	}
 	
-	public void setUsuarioLogado(int id,String nome,int tpUser){
-		switch (tpUser) {
+	public void setUsuarioLogado(int id,String nome,int tpUser, int nivelUsuario){
+		switch (nivelUsuario) {
 		case 1:
-			usuarioLogado = new Professor((long) id, nome); 
+			if(tpUser==3)
+				usuarioLogado = new AlunoGraduacao((long)id, nome);
+			else
+				usuarioLogado = new AlunoPosGraduacao((long)id, nome);
 			break;
 		case 2:
-			usuarioLogado = new AlunoGraduacao((long)id, nome);
+			usuarioLogado = new Professor((long) id, nome);			
 			break;
 		case 3:
-			usuarioLogado = new AlunoPosGraduacao((long)id, nome);
+			usuarioLogado = new Admin((long)id, nome);
 			break;
 		default:
 			showMessage("Tipo de usuario desconhecido. Aplicação será encerrada.");
@@ -208,7 +212,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			System.exit(-1);			
 			break;
 		}
-			
+		this.setTitle(this.getTitle()+" - "+nome);	
 	}
 
 	public void log(String message) {

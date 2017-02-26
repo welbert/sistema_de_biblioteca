@@ -6,8 +6,8 @@ import graduacao.ufba.eng_software1.material.Material;
 
 public abstract class Aluno extends Usuario{
 	
-	public Aluno(Long id, String nome){
-		super(id, nome);
+	public Aluno(Long id, String nome, int tipo_usuario){
+		super(id, nome,tipo_usuario,1);
 	}
 	
 	@Override

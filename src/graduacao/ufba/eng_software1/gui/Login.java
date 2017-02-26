@@ -4,6 +4,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.border.LineBorder;
 
 import graduacao.ufba.eng_software1.bd.BancoDados;
+import graduacao.ufba.eng_software1.utils.Criptografia;
 
 import java.awt.Color;
 import javax.swing.GroupLayout;
@@ -56,18 +57,22 @@ public class Login extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				BancoDados BD = PMainFrame.getBD();
 				ResultSet rs = 
-						BD.selectInformation("usr_id_usuario,usr_nm_nome,usr_tp_usario", "usr_usuario", "usr_nm_login = '"+txfLogin.getText()
-							+"' AND usr_ds_senha = '"+txfPassword.getText()+"'");
+						BD.selectInformation("usr_id_usuario,usr_nm_nome,usr_tp_usuario,tus_nu_nivel_usuario",
+								"usr_usuario,tus_tipo_usuario", 
+								"usr_nm_login = '"+txfLogin.getText()
+								+"' AND usr_ds_senha = '"+Criptografia.criptografar(txfPassword.getText())+"'"
+								+" AND tus_tp_usuario = usr_tp_usuario");
 				try {
-					if(rs.next()){
+					if(rs!=null && rs.next()){
 						PMainFrame.showMessage("Bem vindo(a), "+rs.getString("usr_nm_nome"));
 						PMainFrame.setUsuarioLogado(rs.getInt("usr_id_usuario"),
 								rs.getString("usr_nm_nome"),
-								rs.getInt("usr_tp_usario"));
+								rs.getInt("usr_tp_usuario"),
+								rs.getInt("tus_nu_nivel_usuario"));
 					}else{
 						PMainFrame.showMessage("Usuario/Senha invalido.");
 					}
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					PMainFrame.showMessage("Falha ao logar");
 					PMainFrame.log("Falha ao logar."+e.getMessage());
 				}

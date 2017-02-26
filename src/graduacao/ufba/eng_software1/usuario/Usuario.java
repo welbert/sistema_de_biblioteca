@@ -11,16 +11,19 @@ public abstract class Usuario {
 
 	private Long cod;
 	private String nome;
+	private int nivel_usuario=1;
+	private int tipo_usuario = 0;
 
 	private ArrayList<Emprestimo> emprestimosAbertos;
 	private ArrayList<Emprestimo> emprestimosConluidos;
 	private ArrayList<Reserva> reservas;
 
 
-	public Usuario(Long id, String nome){
+	public Usuario(Long id, String nome, int tipo_usuario, int nivel_usuario){
 
 		this.cod = id;
 		this.nome = nome;
+		this.tipo_usuario = tipo_usuario;
 		emprestimosAbertos = new ArrayList<Emprestimo>();
 		emprestimosConluidos = new ArrayList<Emprestimo>();
 		reservas = new ArrayList<Reserva>();
@@ -123,6 +126,21 @@ public abstract class Usuario {
 
 	public String toString(){
 		return "Nome: "+nome+"\n Emprestimos em abertos: "+getInformacaoEmprestimo(emprestimosAbertos)+"\n\n Emprestimos Passados: "+getInformacaoEmprestimo(emprestimosConluidos)+"\n\n Reservas: "+getReservas();
+	}
+
+
+	public int getNivel_usuario() {
+		return nivel_usuario;
+	}
+
+
+	public void setNivel_usuario(int nivel_usuario) {
+		this.nivel_usuario = nivel_usuario;
+	}
+
+
+	public int getTipoUsuario() {
+		return tipo_usuario;
 	}
 
 
