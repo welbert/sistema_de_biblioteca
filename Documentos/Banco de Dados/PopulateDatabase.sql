@@ -1,7 +1,7 @@
 USE `mydb` ;
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
-`tus_tp_usario` ,
+`tus_tp_usuario` ,
 `tus_ds_usuario`
 )
 VALUES (
@@ -9,7 +9,7 @@ VALUES (
 );
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
-`tus_tp_usario` ,
+`tus_tp_usuario` ,
 `tus_ds_usuario`
 )
 VALUES (
@@ -17,7 +17,7 @@ VALUES (
 );
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
-`tus_tp_usario` ,
+`tus_tp_usuario` ,
 `tus_ds_usuario`
 )
 VALUES (
@@ -28,7 +28,7 @@ INSERT INTO `mydb`.`usr_usuario` (
 `usr_id_usuario` ,
 `usr_nm_login` ,
 `usr_ds_senha` ,
-`usr_tp_usario` ,
+`usr_tp_usuario` ,
 `usr_nm_nome` ,
 `usr_dt_nascimento` ,
 `usr_nu_cpf` ,
