@@ -2,26 +2,38 @@ USE `mydb` ;
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
 `tus_tp_usuario` ,
-`tus_ds_usuario`
+`tus_ds_usuario` ,
+`tus_nu_nivel_usuario`
 )
 VALUES (
-'1', 'Professor'
+'1', 'Professor','3'
 );
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
 `tus_tp_usuario` ,
-`tus_ds_usuario`
+`tus_ds_usuario` ,
+`tus_nu_nivel_usuario`
 )
 VALUES (
-'2', 'Aluno Graduação'
+'2', 'Professor','2'
 );
 
 INSERT INTO `mydb`.`tus_tipo_usuario` (
 `tus_tp_usuario` ,
-`tus_ds_usuario`
+`tus_ds_usuario` ,
+`tus_nu_nivel_usuario`
 )
 VALUES (
-'2', 'Aluno Pós-Graduação'
+'3', 'Aluno Graduação' ,'1'
+);
+
+INSERT INTO `mydb`.`tus_tipo_usuario` (
+`tus_tp_usuario` ,
+`tus_ds_usuario` ,
+`tus_nu_nivel_usuario`
+)
+VALUES (
+'4', 'Aluno Pós-Graduação', '1'
 );
 
 INSERT INTO `mydb`.`usr_usuario` (
