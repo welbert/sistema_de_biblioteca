@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mat_material` (
   `mat_id_material` INT NOT NULL AUTO_INCREMENT,
   `mat_ch_inativo` VARCHAR(1) NULL,
   `mat_cd_localizacao` VARCHAR(8) NOT NULL,
-  `mat_ds_titutlo` VARCHAR(45) NOT NULL,
+  `mat_ds_titulo` VARCHAR(45) NOT NULL,
   `mat_nu_ano` INT NULL,
   `mat_tp_material` INT NOT NULL,
   PRIMARY KEY (`mat_id_material`),
@@ -276,6 +276,40 @@ CREATE TABLE IF NOT EXISTS `mydb`.`res_reserva` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+CREATE OR REPLACE VIEW usuario_devedores AS 
+SELECT usr_usuario.usr_nm_nome,
+usr_usuario.usr_nu_cpf,
+usr_usuario.usr_nu_telefone,
+usr_usuario.usr_ds_endereco,
+usr_usuario.usr_id_usuario,
+emp_emprestimo.emp_dt_emprestimo,
+emp_emprestimo.emp_dt_prevista,
+mat_material.mat_ds_titulo,
+mat_material.mat_id_material
+FROM usr_usuario, 
+emp_emprestimo,
+mat_material
+where usr_usuario.usr_id_usuario = emp_emprestimo.emp_id_usuario 
+AND emp_emprestimo.emp_dt_prevista < NOW()
+AND emp_emprestimo.emp_id_material = mat_material.mat_id_material
+ORDER BY emp_emprestimo.emp_dt_prevista;
+
+CREATE OR REPLACE VIEW usuario_reservas AS 
+SELECT usr_usuario.usr_nm_nome,
+usr_usuario.usr_nu_cpf,
+usr_usuario.usr_nu_telefone,
+usr_usuario.usr_ds_endereco,
+usr_usuario.usr_id_usuario,
+mat_material.mat_ds_titutlo,
+mat_material.mat_id_material,
+res_reserva.res_dt_reserva
+FROM usr_usuario,
+res_reserva,
+mat_material
+where usr_usuario.usr_id_usuario = res_reserva.res_id_usuario 
+ORDER BY res_reserva.res_dt_reserva;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
