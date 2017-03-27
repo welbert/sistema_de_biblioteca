@@ -77,11 +77,11 @@ VALUES
 ('3', 'alunopg1', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
 ('4', 'alunopg2', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
-INSERT INTO `mydb`.`alu_aluno` (`alu_id_aluno`, `alu_nu_matricula`, `alu_ch_graduacao`, `alu_ch_inadimplente`, `alu_id_usuario`)
-VALUES (1, '20171', 'S', NULL, 5),
-       (2, '20172', 'S', NULL, 2),
-       (3, '20173', 'N', NULL, 3),
-       (4, '20174', 'N', NULL, 4);
+INSERT INTO `mydb`.`alu_aluno` (`alu_id_usuario`, `alu_nu_matricula`, `alu_ch_graduacao`, `alu_ch_inadimplente`)
+VALUES (5, '20171', 'S', NULL),
+       (2, '20172', 'S', NULL),
+       (3, '20173', 'N', NULL),
+       (4, '20174', 'N', NULL);
 
 
 -- Criando Professores
@@ -103,9 +103,9 @@ VALUES
 ('6', 'prof1', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
 ('7', 'prof2', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
-INSERT INTO `mydb`.`pro_professor` (`pro_id_professor`, `pro_nu_siape`, `pro_ch_afastado`, `pro_id_usuario`)
-VALUES ('1', '123', NULL, '6'),
-	('2', '124', NULL, '7');
+INSERT INTO `mydb`.`pro_professor` (`pro_id_usuario`, `pro_nu_siape`, `pro_ch_afastado`)
+VALUES ('6', '123', NULL),
+	('7', '124', NULL);
 
 -- Tipo de materiais
 INSERT INTO `mydb`.`tma_tipo_material` (
