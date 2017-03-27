@@ -366,6 +366,7 @@ mat_material
 where usr_usuario.usr_id_usuario = emp_emprestimo.emp_id_usuario 
 AND emp_emprestimo.emp_dt_prevista < NOW()
 AND emp_emprestimo.emp_id_material = mat_material.mat_id_material
+AND emp_dt_devolucao is null
 ORDER BY emp_emprestimo.emp_dt_prevista;
 
 -- -----------------------------------------------------
@@ -386,7 +387,10 @@ FROM usr_usuario,
 res_reserva,
 mat_material
 where usr_usuario.usr_id_usuario = res_reserva.res_id_usuario 
+and mat_id_material = res_id_material
 ORDER BY res_reserva.res_dt_reserva;
+
+
 USE `mydb`;
 
 DELIMITER $$

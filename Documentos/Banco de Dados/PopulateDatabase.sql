@@ -38,7 +38,7 @@ VALUES (
 
 
 -- Criando Admnistrador
---Senha = admin
+-- Senha = admin
 INSERT INTO `mydb`.`usr_usuario` (
 `usr_id_usuario` ,
 `usr_nm_login` ,
@@ -56,7 +56,7 @@ VALUES (
 );
 
 
---Criando Alunos de Graduação e Pos
+-- Criando Alunos de Graduação e Pos
 -- Senha = senha
 
 INSERT INTO `mydb`.`usr_usuario` (
@@ -84,7 +84,7 @@ VALUES (1, '20171', 'S', NULL, 5),
        (4, '20174', 'N', NULL, 4);
 
 
---Criando Professores
+-- Criando Professores
 -- Senha = senha
 
 INSERT INTO `mydb`.`usr_usuario` (
@@ -153,7 +153,7 @@ INSERT INTO `mydb`.`rev_revista` (
 `rev_id_material`)
 VALUES ('1', '1234567890-7890', 'SP', '3', '3');
 
---CD
+-- CD
 INSERT INTO `mydb`.`dsc_disco_cd` (
 `dsc_id_disco_cd` ,
 `dsc_nu_faixas` ,
@@ -163,7 +163,7 @@ INSERT INTO `mydb`.`dsc_disco_cd` (
 )
 VALUES ('1', '5', 'globo', 'desconhecido', '4');
 
---DVD
+-- DVD
 INSERT INTO `mydb`.`dsd_disco_dvd` (
 `dsd_id_disco_dvd` ,
 `dsd_nm_distribuidora` ,
