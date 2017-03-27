@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mat_material` (
   `mat_id_material` INT NOT NULL AUTO_INCREMENT,
   `mat_ch_inativo` VARCHAR(1) NULL,
   `mat_cd_localizacao` VARCHAR(8) NOT NULL,
-  `mat_ds_tituto` VARCHAR(45) NOT NULL,
+  `mat_ds_titulo` VARCHAR(45) NOT NULL,
   `mat_nu_ano` INT NULL,
   `mat_tp_material` INT NOT NULL,
   PRIMARY KEY (`mat_id_material`),
@@ -343,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario_devedores` (`usr_nm_nome` INT, `usr_n
 -- -----------------------------------------------------
 -- Placeholder table for view `mydb`.`usuario_reservas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario_reservas` (`usr_nm_nome` INT, `usr_nu_cpf` INT, `usr_nu_telefone` INT, `usr_ds_endereco` INT, `usr_id_usuario` INT, `mat_ds_titutlo` INT, `mat_id_material` INT, `res_dt_reserva` INT);
+CREATE TABLE IF NOT EXISTS `mydb`.`usuario_reservas` (`usr_nm_nome` INT, `usr_nu_cpf` INT, `usr_nu_telefone` INT, `usr_ds_endereco` INT, `usr_id_usuario` INT, `mat_ds_titulo` INT, `mat_id_material` INT, `res_dt_reserva` INT);
 
 -- -----------------------------------------------------
 -- View `mydb`.`usuario_devedores`
@@ -379,7 +379,7 @@ usr_usuario.usr_nu_cpf,
 usr_usuario.usr_nu_telefone,
 usr_usuario.usr_ds_endereco,
 usr_usuario.usr_id_usuario,
-mat_material.mat_ds_titutlo,
+mat_material.mat_ds_titulo,
 mat_material.mat_id_material,
 res_reserva.res_dt_reserva
 FROM usr_usuario,

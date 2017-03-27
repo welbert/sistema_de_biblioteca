@@ -71,58 +71,11 @@ INSERT INTO `mydb`.`usr_usuario` (
 `usr_ds_endereco` ,
 `usr_ch_inativo`
 )
-VALUES (
-'5', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '3', 'Aluno Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
-
-INSERT INTO `mydb`.`usr_usuario` (
-`usr_id_usuario`,
-`usr_nm_login` ,
-`usr_ds_senha` ,
-`usr_tp_usuario` ,
-`usr_nm_nome` ,
-`usr_dt_nascimento` ,
-`usr_nu_cpf` ,
-`usr_nu_telefone` ,
-`usr_ds_endereco` ,
-`usr_ch_inativo`
-)
-VALUES (
-'2', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '3', 'Aluno Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
-
-INSERT INTO `mydb`.`usr_usuario` (
-`usr_id_usuario`,
-`usr_nm_login` ,
-`usr_ds_senha` ,
-`usr_tp_usuario` ,
-`usr_nm_nome` ,
-`usr_dt_nascimento` ,
-`usr_nu_cpf` ,
-`usr_nu_telefone` ,
-`usr_ds_endereco` ,
-`usr_ch_inativo`
-)
-VALUES (
-'3', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
-
-
-INSERT INTO `mydb`.`usr_usuario` (
-`usr_id_usuario`,
-`usr_nm_login` ,
-`usr_ds_senha` ,
-`usr_tp_usuario` ,
-`usr_nm_nome` ,
-`usr_dt_nascimento` ,
-`usr_nu_cpf` ,
-`usr_nu_telefone` ,
-`usr_ds_endereco` ,
-`usr_ch_inativo`
-)
-VALUES (
-'4', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
+VALUES 
+('5', 'alunog1', 'e8d95a51f3af4a3b134bf6bb680a213a', '3', 'Aluno Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
+('2', 'alunog2', 'e8d95a51f3af4a3b134bf6bb680a213a', '3', 'Aluno Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
+('3', 'alunopg1', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
+('4', 'alunopg2', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
 
 --Criando Professores
@@ -140,26 +93,9 @@ INSERT INTO `mydb`.`usr_usuario` (
 `usr_ds_endereco` ,
 `usr_ch_inativo`
 )
-VALUES (
-'6', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
-
-
-INSERT INTO `mydb`.`usr_usuario` (
-`usr_id_usuario`,
-`usr_nm_login` ,
-`usr_ds_senha` ,
-`usr_tp_usuario` ,
-`usr_nm_nome` ,
-`usr_dt_nascimento` ,
-`usr_nu_cpf` ,
-`usr_nu_telefone` ,
-`usr_ds_endereco` ,
-`usr_ch_inativo`
-)
-VALUES (
-'7', 'admin', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'
-);
+VALUES 
+('6', 'prof1', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
+('7', 'prof2', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
 
 -- Tipo de materiais
