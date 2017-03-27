@@ -391,41 +391,41 @@ USE `mydb`;
 
 DELIMITER $$
 USE `mydb`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`alu_aluno_BEFORE_DELETE` BEFORE DELETE ON `alu_aluno` FOR EACH ROW
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TG_backup_aluno` BEFORE DELETE ON `alu_aluno` FOR EACH ROW
 BEGIN
 INSERT INTO alx_aluno_excluido
-SELECT * FROM alu_aluno alu WHERE alu.alu_id_usuario = alu_id_usuario;
+SELECT * FROM alu_aluno alu WHERE alu.alu_id_usuario = old.alu_id_usuario;
 
 update usr_usuario
 set usr_ch_inativo = 'S'
-where usr_id_usuario = alu_id_usuario;
+where usr_id_usuario = old.alu_id_usuario;
 END$$
 
 USE `mydb`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`alu_aluno_AFTER_INSERT` AFTER INSERT ON `alu_aluno` FOR EACH ROW
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TG_ativa_aluno` AFTER INSERT ON `alu_aluno` FOR EACH ROW
 BEGIN
 update usr_usuario
 set usr_ch_inativo = 'N'
-where usr_id_usuario = alu_id_usuario;
+where usr_id_usuario = new.alu_id_usuario;
 END$$
 
 USE `mydb`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`pro_professor_BEFORE_DELETE` BEFORE DELETE ON `pro_professor` FOR EACH ROW
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TG_backup_professor` BEFORE DELETE ON `pro_professor` FOR EACH ROW
 BEGIN
 INSERT INTO prx_professor_excluido
-SELECT * FROM pro_professor prof WHERE prof.pro_id_usuario = pro_id_usuario;
+SELECT * FROM pro_professor prof WHERE prof.pro_id_usuario = old.pro_id_usuario;
 
 update usr_usuario
 set usr_ch_inativo = 'S'
-where usr_id_usuario = pro_id_usuario;
+where usr_id_usuario = old.pro_id_usuario;
 END$$
 
 USE `mydb`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`pro_professor_AFTER_INSERT` AFTER INSERT ON `pro_professor` FOR EACH ROW
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TG_ativa_professor` AFTER INSERT ON `pro_professor` FOR EACH ROW
 BEGIN
 update usr_usuario
 set usr_ch_inativo = 'N'
-where usr_id_usuario = pro_id_usuario;
+where usr_id_usuario = new.pro_id_usuario;
 END$$
 
 

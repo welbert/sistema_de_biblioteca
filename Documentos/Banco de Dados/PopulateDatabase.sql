@@ -77,6 +77,12 @@ VALUES
 ('3', 'alunopg1', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
 ('4', 'alunopg2', 'e8d95a51f3af4a3b134bf6bb680a213a', '4', 'Aluno Pos Graduacao 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
+INSERT INTO `mydb`.`alu_aluno` (`alu_id_aluno`, `alu_nu_matricula`, `alu_ch_graduacao`, `alu_ch_inadimplente`, `alu_id_usuario`)
+VALUES (1, '20171', 'S', NULL, 5),
+       (2, '20172', 'S', NULL, 2),
+       (3, '20173', 'N', NULL, 3),
+       (4, '20174', 'N', NULL, 4);
+
 
 --Criando Professores
 -- Senha = senha
@@ -97,6 +103,9 @@ VALUES
 ('6', 'prof1', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 1', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N'),
 ('7', 'prof2', 'e8d95a51f3af4a3b134bf6bb680a213a', '2', 'Professor 2', '2017-01-01', '55555555555', '55555555555', 'Ali', 'N');
 
+INSERT INTO `mydb`.`pro_professor` (`pro_id_professor`, `pro_nu_siape`, `pro_ch_afastado`, `pro_id_usuario`)
+VALUES ('1', '123', NULL, '6'),
+	('2', '124', NULL, '7');
 
 -- Tipo de materiais
 INSERT INTO `mydb`.`tma_tipo_material` (
@@ -114,7 +123,7 @@ INSERT INTO `mydb`.`mat_material` (
 `mat_id_material` ,
 `mat_ch_inativo` ,
 `mat_cd_localizacao` ,
-`mat_ds_titutlo` ,
+`mat_ds_titulo` ,
 `mat_nu_ano` ,
 `mat_tp_material`
 )
@@ -164,3 +173,16 @@ INSERT INTO `mydb`.`dsd_disco_dvd` (
 `dsd_id_material`
 )
 VALUES ('1', 'HQ Filmes', 'FULANO', '1', 'Brasil', '5');
+
+
+-- Emprestimos
+
+INSERT INTO `mydb`.`emp_emprestimo` (`emp_id_emprestimo`, `emp_dt_emprestimo`, `emp_dt_devolucao`, `emp_dt_prevista`, `emp_id_usuario`, `emp_id_material`)
+VALUES ('1', '2017-03-20', NULL, '2017-03-29', '5', '1'),
+	('2', '2017-03-24', NULL, '2017-03-27', '3', '2'),
+	('2', '2017-03-24', NULL, '2017-03-27', '3', '3'),
+	('3', '2017-03-01', '2017-03-05', '2017-03-10', '3', '2');
+
+-- Reserva
+INSERT INTO `mydb`.`res_reserva` (`res_id_reserva`, `res_id_material`, `res_id_usuario`, `res_dt_reserva`)
+VALUES ('1', '1', '6', '2017-03-24');
