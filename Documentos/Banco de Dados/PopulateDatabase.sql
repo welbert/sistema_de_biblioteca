@@ -185,4 +185,5 @@ VALUES ('1', '2017-03-20', NULL, '2017-03-29', '5', '1'),
 
 -- Reserva
 INSERT INTO `mydb`.`res_reserva` (`res_id_reserva`, `res_id_material`, `res_id_usuario`, `res_dt_reserva`)
-VALUES ('1', '1', '6', '2017-03-24');
+VALUES ('1', '1', '6', '2017-03-24'),
+('2', '4', '3', '2017-03-27');
