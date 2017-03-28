@@ -280,34 +280,14 @@ ENGINE = InnoDB;
 -- Table `mydb`.`alx_aluno_excluido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`alx_aluno_excluido` (
-  `alx_id_aluno` INT NOT NULL AUTO_INCREMENT,
+  `alx_id_usuario` INT NOT NULL,
   `alx_nu_matricula` VARCHAR(45) NOT NULL,
   `alx_ch_graduacao` VARCHAR(1) NOT NULL,
   `alx_ch_inadimplente` VARCHAR(1) NULL,
-  `alu_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`alx_id_aluno`),
-  INDEX `fk_alx_aluno_usr_usuario1_idx` (`alu_id_usuario` ASC),
+  PRIMARY KEY (`alx_id_usuario`),
+  INDEX `fk_alx_aluno_usr_usuario1_idx` (`alx_id_usuario` ASC),
   CONSTRAINT `fk_alx_aluno_usr_usuario`
-    FOREIGN KEY (`alu_id_usuario`)
-    REFERENCES `mydb`.`usr_usuario` (`usr_id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`alx_aluno_excluido`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`alx_aluno_excluido` (
-  `alx_id_aluno` INT NOT NULL AUTO_INCREMENT,
-  `alx_nu_matricula` VARCHAR(45) NOT NULL,
-  `alx_ch_graduacao` VARCHAR(1) NOT NULL,
-  `alx_ch_inadimplente` VARCHAR(1) NULL,
-  `alu_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`alx_id_aluno`),
-  INDEX `fk_alx_aluno_usr_usuario1_idx` (`alu_id_usuario` ASC),
-  CONSTRAINT `fk_alx_aluno_usr_usuario`
-    FOREIGN KEY (`alu_id_usuario`)
+    FOREIGN KEY (`alx_id_usuario`)
     REFERENCES `mydb`.`usr_usuario` (`usr_id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -318,19 +298,17 @@ ENGINE = InnoDB;
 -- Table `mydb`.`prx_professor_excluido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`prx_professor_excluido` (
-  `prx_id_professor` INT NOT NULL AUTO_INCREMENT,
+  `prx_id_usuario` INT NOT NULL,
   `prx_nu_siape` VARCHAR(15) NOT NULL,
   `prx_ch_afastado` VARCHAR(1) NULL,
-  `prx_id_usuario` INT NOT NULL,
-  PRIMARY KEY (`prx_id_professor`),
   INDEX `fk_prx_professor_usr_usuario1_idx` (`prx_id_usuario` ASC),
+  PRIMARY KEY (`prx_id_usuario`),
   CONSTRAINT `fk_prx_professor_usr_usuario10`
     FOREIGN KEY (`prx_id_usuario`)
     REFERENCES `mydb`.`usr_usuario` (`usr_id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 USE `mydb` ;
 
 -- -----------------------------------------------------
@@ -427,6 +405,36 @@ update usr_usuario
 set usr_ch_inativo = 'S'
 where usr_id_usuario = old.pro_id_usuario;
 END$$
+
+
+USE `mydb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TBD_dsc_cd` BEFORE DELETE ON `dsc_disco_cd` FOR EACH ROW
+BEGIN
+delete FROM mat_material
+where mat_id_material = old.dsc_id_material;
+END$$
+
+USE `mydb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TBD_dsd_dvd` BEFORE DELETE ON `dsd_disco_dvd` FOR EACH ROW
+BEGIN
+delete FROM mat_material
+where mat_id_material = old.dsd_id_material;
+END$$
+
+USE `mydb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TBD_liv_livro` BEFORE DELETE ON `liv_livro` FOR EACH ROW
+BEGIN
+delete FROM mat_material
+where mat_id_material = old.liv_id_material;
+END$$
+
+USE `mydb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `mydb`.`TBD_rev_revista` BEFORE DELETE ON `rev_revista` FOR EACH ROW
+BEGIN
+delete from mat_material
+where mat_id_material = rev_id_material;
+END$$
+
 
 
 DELIMITER ;
